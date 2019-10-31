@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> Home </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <style>
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <h1 align="center">Sistem Informasi Obat</h1>
+        <div class="container">
+            <div class="bg-dark">
+                <p align="center" style="color: white">Daftar Obat</p>
+            </div>
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="obat : ${daftarObat}">
+                        <td th:text="${obat.idObat}"></td>
+                        <td th:text="${obat.kodeObat}"></td>
+                        <td th:text="${obat.namaObat}"></td>
+                        <td th:text="${obat.harga}"></td>
+                        <td>
+                            <button style="background-color: blue" class="btn btn-primary">
+                                <a th:href="@{obat/view?noReg=}+${obat.nomorRegistrasi}" style="color: white"> Lihat </a>
+                            </button>
+                            <button style="background-color: black" class="btn btn-primary">
+                                <a th:href="@{obat/ubah?id=}+${obat.idObat}" style="color: white"> Ubah </a>
+                            </button>
+                            <button style="background-color: red" class="btn btn-primary">
+                                <a th:href=@{obat/hapus/}+${obat.idObat} style="color: white"> Hapus </a>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div align="center">
+                <button class="btn btn-primary" style="background-color: black">
+                    <a th:href="@{/obat/tambah}" style="color: white"> Tambah Obat </a>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

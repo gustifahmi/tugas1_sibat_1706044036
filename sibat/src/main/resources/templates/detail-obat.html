@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Obat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <style>
+        .column {
+            float: left;
+            width: 25%;
+            padding: 10px;
+            height: 400px;
+        }
+
+        p{
+            text-align: left;
+        }
+
+        p.judul {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <h1 align="center">Sistem Informasi Obat</h1>
+    <div class="container">
+        <div class="bg-dark">
+            <p class="judul" style="color: white">Detail Obat</p>
+        </div>
+        <div class="row" style="padding-left: 400px">
+            <div class="column">
+                <p>Kode</p>
+                <p>Nama</p>
+                <p>Nomor Registrasi</p>
+                <p>Bentuk</p>
+                <p>Tanggal Terbit</p>
+                <p>Harga</p>
+                <p>Jenis Obat</p>
+            </div>
+            <div class="column">
+                <p th:text="${obat.kodeObat}"></p>
+                <p th:text="${obat.namaObat}"></p>
+                <p th:text="${obat.nomorRegistrasi}"></p>
+                <p th:text="${obat.bentuk}"></p>
+                <p th:text="${obat.tanggalTerbit}"></p>
+                <p th:text="${obat.harga}"></p>
+                <p th:text="${obat.jenis}"></p>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" style="background-color: blue">
+                <a th:href="@{/}" style="color: white"> Kembali ke Beranda</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

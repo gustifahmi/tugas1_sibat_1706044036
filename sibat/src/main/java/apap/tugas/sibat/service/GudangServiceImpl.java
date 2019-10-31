@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GudangServiceImpl implements GudangService {
@@ -38,12 +37,12 @@ public class GudangServiceImpl implements GudangService {
 
     @Override
     public void hapusGudang(Long idGudang) {
-        GudangModel gudang = detailGudang(idGudang).get();
+        GudangModel gudang = getGudangByIdGudang(idGudang);
         gudangDb.delete(gudang);
     }
 
     @Override
-    public Optional<GudangModel> detailGudang(Long idGudang) {
+    public GudangModel getGudangByIdGudang(Long idGudang) {
         return gudangDb.findByIdGudang(idGudang);
     }
 }

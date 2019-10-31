@@ -12,7 +12,7 @@ public class GudangModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idGudang;
+    private Long idGudang;
 
     @NotNull
     @Size(max = 20)
@@ -24,14 +24,14 @@ public class GudangModel implements Serializable {
     @Column(name = "alamat", nullable = false)
     private String alamatGudang;
 
-    @ManyToMany(mappedBy = "obat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ObatModel> listObat;
+    @OneToMany(mappedBy = "gudang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PenyimpananObat> penyimpanan;
 
-    public long getIdGudang() {
+    public Long getIdGudang() {
         return idGudang;
     }
 
-    public void setIdGudang(long idGudang) {
+    public void setIdGudang(Long idGudang) {
         this.idGudang = idGudang;
     }
 
@@ -51,11 +51,11 @@ public class GudangModel implements Serializable {
         this.alamatGudang = alamatGudang;
     }
 
-    public List<ObatModel> getListObat() {
-        return listObat;
+    public List<PenyimpananObat> getPenyimpanan() {
+        return penyimpanan;
     }
 
-    public void setListObat(List<ObatModel> listObat) {
-        this.listObat = listObat;
+    public void setPenyimpanan(List<PenyimpananObat> penyimpanan) {
+        this.penyimpanan = penyimpanan;
     }
 }

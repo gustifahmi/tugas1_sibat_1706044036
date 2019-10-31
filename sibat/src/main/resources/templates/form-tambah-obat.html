@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> Tambah Obat </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <h1 align="center">Sistem Informasi Obat</h1>
+    <div class="container">
+        <div class="bg-dark">
+            <p align="center" style="color: white">Tambah Obat</p>
+        </div>
+        <form class="form-horizontal" th:action="@{/obat/tambah}" th:object="${obat}" method="POST">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Nama</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Nama Obat" name="namaObat">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Nomor Registrasi</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Nomor Registrasi" name="nomorRegistrasi">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Tanggal Terbit</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" name="tanggalTerbit">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Harga</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="harga">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Bentuk</label>
+                <div class="col-sm-4">
+                    <select class="form-control" required name="bentuk">
+                        <option value="">-- Pilih Jenis --</option>
+                        <option value="Cairan">Cairan</option>
+                        <option value="Kapsul">Kapsul</option>
+                        <option value="Tablet">Tablet</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Jenis</label>
+                <div class="col-sm-4">
+                    <select class="form-control" required name="jenis">
+                        <option value="">-- Pilih Jenis --</option>
+                        <option value="Generik">Generik</option>
+                        <option value="Paten">Paten</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Supplier</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Supplier" name="supplier">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit"> Submit </button>
+        </form>
+    </div>
+</div>
+</body>

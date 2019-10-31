@@ -1,9 +1,5 @@
 package apap.tugas.sibat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,7 +12,7 @@ public class SupplierModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idSupplier;
+    private Long idSupplier;
 
     @NotNull
     @Size(max = 20)
@@ -25,24 +21,22 @@ public class SupplierModel implements Serializable {
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "alamat", nullable = false)
+    @Column(name = "alamat")
     private String alamatSupplier;
 
     @NotNull
     @Size(max = 12)
-    @Column(name = "nomorTelepon", nullable = false)
+    @Column(name = "nomor_telepon")
     private String nomorTelepon;
 
-    @ManyToMany(mappedBy = "obat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private List<ObatModel> listObat;
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PenyediaanObat> penyediaan;
 
-    public long getIdSupplier() {
+    public Long getIdSupplier() {
         return idSupplier;
     }
 
-    public void setIdSupplier(long idSupplier) {
+    public void setIdSupplier(Long idSupplier) {
         this.idSupplier = idSupplier;
     }
 
@@ -70,11 +64,11 @@ public class SupplierModel implements Serializable {
         this.nomorTelepon = nomorTelepon;
     }
 
-    public List<ObatModel> getListObat() {
-        return listObat;
+    public List<PenyediaanObat> getPenyediaan() {
+        return penyediaan;
     }
 
-    public void setListObat(List<ObatModel> listObat) {
-        this.listObat = listObat;
+    public void setPenyediaan(List<PenyediaanObat> penyediaan) {
+        this.penyediaan = penyediaan;
     }
 }

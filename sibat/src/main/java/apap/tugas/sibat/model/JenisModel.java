@@ -3,7 +3,6 @@ package apap.tugas.sibat.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
 public class JenisModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idJenis;
+    private Long idJenis;
 
     @NotNull
     @Size(max = 10)
@@ -20,17 +19,18 @@ public class JenisModel implements Serializable {
     private String namaJenis;
 
     @NotNull
-    @Column(name = "deskripsi", nullable = false)
-    private TextField deskripsi;
+    @Size(max = 50)
+    @Column(name = "deskripsi")
+    private String deskripsi;
 
-    @OneToMany(mappedBy = "obat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jenisModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ObatModel> listObat;
 
-    public long getIdJenis() {
+    public Long getIdJenis() {
         return idJenis;
     }
 
-    public void setIdJenis(long idJenis) {
+    public void setIdJenis(Long idJenis) {
         this.idJenis = idJenis;
     }
 
@@ -42,11 +42,11 @@ public class JenisModel implements Serializable {
         this.namaJenis = namaJenis;
     }
 
-    public TextField getDeskripsi() {
+    public String getDeskripsi() {
         return deskripsi;
     }
 
-    public void setDeskripsi(TextField deskripsi) {
+    public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
     }
 
@@ -56,5 +56,9 @@ public class JenisModel implements Serializable {
 
     public void setListObat(List<ObatModel> listObat) {
         this.listObat = listObat;
+    }
+
+    public void addObat(ObatModel obat) {
+        this.listObat.add(obat);
     }
 }
